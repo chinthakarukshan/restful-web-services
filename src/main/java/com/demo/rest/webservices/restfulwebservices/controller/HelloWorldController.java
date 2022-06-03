@@ -2,10 +2,7 @@ package com.demo.rest.webservices.restfulwebservices.controller;
 
 import com.demo.rest.webservices.restfulwebservices.domain.HelloWorldBean;
 import org.springframework.http.HttpMethod;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.nio.file.Path;
 
@@ -20,5 +17,10 @@ public class HelloWorldController {
     @GetMapping(path = "/hello-world-bean")
     public HelloWorldBean helloWorldBean() {
         return new HelloWorldBean("Hello-world-bean");
+    }
+
+    @GetMapping(path="/hello-world/path-variable/{name}")
+    public HelloWorldBean helloWorldPathVariable(@PathVariable String name) {
+        return new HelloWorldBean("Hello World Path Variable " + name);
     }
 }
