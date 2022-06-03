@@ -1,4 +1,4 @@
-package com.demo.rest.webservices.restfulwebservices.domain;
+package com.demo.rest.webservices.restfulwebservices.dto;
 
 public class HelloWorldBean {
 

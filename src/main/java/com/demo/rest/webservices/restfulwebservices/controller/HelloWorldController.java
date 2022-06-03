@@ -1,10 +1,7 @@
 package com.demo.rest.webservices.restfulwebservices.controller;
 
-import com.demo.rest.webservices.restfulwebservices.domain.HelloWorldBean;
-import org.springframework.http.HttpMethod;
+import com.demo.rest.webservices.restfulwebservices.dto.HelloWorldBean;
 import org.springframework.web.bind.annotation.*;
-
-import java.nio.file.Path;
 
 @RestController
 public class HelloWorldController {
