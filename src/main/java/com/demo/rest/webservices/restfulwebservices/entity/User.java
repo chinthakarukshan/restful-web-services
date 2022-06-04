@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class User {
     public User(Integer id, String name, Date birthDate) {
+        super();
         this.id = id;
         this.name = name;
         this.birthDate = birthDate;
