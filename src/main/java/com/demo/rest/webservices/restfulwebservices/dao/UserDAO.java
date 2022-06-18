@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -36,6 +37,20 @@ public class UserDAO {
     public User getUser (int userId) {
         for (User user: users) {
             if (user.getId() == userId) {
+                return user;
+            }
+        }
+
+        return null;
+    }
+
+    public User deleteUserById(int userId) {
+        Iterator<User> userIterator = users.iterator();
+
+        while (userIterator.hasNext()) {
+            User user = userIterator.next();
+            if (user.getId() == userId) {
+                userIterator.remove();
                 return user;
             }
         }
