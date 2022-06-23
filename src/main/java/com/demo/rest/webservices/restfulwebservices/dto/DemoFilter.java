@@ -2,13 +2,13 @@ package com.demo.rest.webservices.restfulwebservices.dto;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@JsonIgnoreProperties({"field1", "field2"})
 public class DemoFilter {
 
     private String field1;
     private String field2;
-
-    @JsonIgnore
     private String field3;
 
     public DemoFilter(String field1, String field2, String field3) {
