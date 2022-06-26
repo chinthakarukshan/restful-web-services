@@ -40,8 +40,18 @@ public class FilteringController {
     }
 
     @GetMapping("/filtering-list-dynamic")
-    public List<DemoFilter> getDynamicFilterList() {
-        return Arrays.asList(new DemoFilter("value1", "value2", "value3"),new DemoFilter("value11", "value22", "value33"));
+    public MappingJacksonValue getDynamicFilterList() {
+        List<DemoFilter> beanList =  Arrays.asList(new DemoFilter("value1", "value2", "value3"),new DemoFilter("value11", "value22", "value33"));
+
+        SimpleBeanPropertyFilter simpleBeanPropertyFilter = SimpleBeanPropertyFilter.filterOutAllExcept("field1","field3");
+
+        FilterProvider filterProvider = new SimpleFilterProvider().addFilter("DemoFilter", simpleBeanPropertyFilter);
+
+        MappingJacksonValue mapping = new MappingJacksonValue(beanList);
+        mapping.setFilters(filterProvider);
+
+
+        return mapping;
     }
 
 }
