@@ -49,13 +49,17 @@ public class PostJpaController {
 
     @PostMapping(path = "/jpa/users/{userId}/posts")
     public ResponseEntity<Object> createPost(@PathVariable int userId, @RequestBody Post post) {
-        User user = userDAO.getUser(userId);
+        Optional<User> userOptional = userRepository.findById(userId);
 
-        if (user == null) {
+        if (!userOptional.isPresent()) {
             throw new UserNotFoundException("Id : " + userId);
         }
 
-        Post createdPost = postDAO.createPost(user,post);
+        User user = userOptional.get();
+
+        post.setUser(user);
+
+        Post createdPost = postRespository.save(post);
 
         URI createdUri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{postId}").buildAndExpand(createdPost.getId()).toUri();
 
