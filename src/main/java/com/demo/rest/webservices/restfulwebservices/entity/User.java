@@ -1,15 +1,27 @@
 package com.demo.rest.webservices.restfulwebservices.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class User {
+
+    @Id
+    @GeneratedValue
+    private Integer id;
+
+    @Size(min = 2, message = "Name should have at least two characters")
+    private String name;
+
+    @Past
+    private Date birthDate;
+
+    @OneToMany(mappedBy = "user")
+    private List<Post> posts;
+
     public User(Integer id, String name, Date birthDate) {
         super();
         this.id = id;
@@ -45,13 +57,11 @@ public class User {
         this.birthDate = birthDate;
     }
 
-    @Id
-    @GeneratedValue
-    private Integer id;
+    public List<Post> getPosts() {
+        return posts;
+    }
 
-    @Size(min = 2, message = "Name should have at least two characters")
-    private String name;
-
-    @Past
-    private Date birthDate;
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
+    }
 }

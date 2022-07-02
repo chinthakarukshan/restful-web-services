@@ -1,18 +1,25 @@
 package com.demo.rest.webservices.restfulwebservices.entity;
 
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
 public class Post {
-    private int id;
+
+    @Id
+    @GeneratedValue
+    private Integer id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     private User user;
     private String content;
     private Date createdDate;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(int Integer) {
         this.id = id;
     }
 
