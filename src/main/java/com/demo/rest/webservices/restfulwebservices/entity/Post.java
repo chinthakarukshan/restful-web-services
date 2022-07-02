@@ -1,5 +1,7 @@
 package com.demo.rest.webservices.restfulwebservices.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -11,6 +13,7 @@ public class Post {
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     private User user;
     private String content;
     private Date createdDate;
